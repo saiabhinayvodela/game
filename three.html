@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>rock-paper-scissors  భేతాళ</title>
+        <link rel="icon" href="images/GIF/rockPaperScissors.png">
+        <style>
+            body{
+                text-align:center;
+                background-color: hsl(0, 0%, 0%);
+                color:yellowgreen;
+                height: 100%;
+                width: 100%;
+                text-align: center;
+                margin-top: 10em;
+            }
+            button{
+                cursor:pointer;
+                background-color: black;
+                padding:25px 30px;
+                font-size: 3em;
+                border-radius: 25em;
+                color:greenyellow;
+                transition: 0.2s;
+            }
+            button:hover{
+                background-color: yellowgreen;
+                color:rgb(69, 37, 37);
+                text-size-adjust: 1em;
+            }
+            #reset{
+                font-size: 1em;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            #result{
+                color:orange;
+                font-size: 2em;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+           <h1> Rock Paper Scissors </h1>
+        </p> <br>
+        <button onclick="
+        result('✊');
+        ">✊</button>
+        <button onclick="
+        result('✋');
+        ">✋</button>
+        <button onclick="
+        result('✌️');
+        ">✌️</button>
+        <br>
+        <br>
+        <button onclick="
+        reset();
+        " id="reset">Reset</button>
+        <br>
+        <h2 id="result"></h2>
+        <h1> <a style="color: hsl(240, 100%, 20%);">Score : </a> Wins : <a id="wins">0</a>, Loses : <a id="loses">0</a>, Ties : <a id="ties">0</a></h1>
+        <script>
+            const score={
+                wins:0,
+                loses:0,
+                ties:0
+            };
+            function result(playerMove)
+            {
+                let status="";
+                const move=randomChoice();
+                if(move===playerMove)
+                {
+                    status="Tie";
+                }
+                else if(playerMove==="✊")
+                {
+                    if(move==="✌️")
+                    {
+                        status="You win";
+                    }
+                    else{
+                        status="You lose";
+                    }
+                }
+                else if(playerMove==="✋")
+                {
+                    if(move==="✊")
+                    {
+                        status="You win";
+                    }
+                    else{
+                        status="You lose";
+                    }
+
+                }
+                else if(playerMove==="✌️")
+                {
+                    if(move==="✊")
+                    {
+                        status="You win";
+                    }
+                    else{
+                        status="You lose";
+                    }
+                }
+                if(status==='You win')
+                {
+                    score.wins++;
+                }
+                else if(status=='You lose')
+                {
+                    score.loses++;
+                }
+                else if(status==='Tie')
+                {
+                    score.ties++;
+                }
+                document.getElementById("result").innerHTML=`${playerMove} VS ${move} = ${status}.`;
+                document.getElementById("wins").innerHTML=`${score.wins}`;
+                document.getElementById("loses").innerHTML=`${score.loses}`;
+                document.getElementById("ties").innerHTML=`${score.ties}`;
+            }
+            function reset()
+            { 
+                score.wins=0;
+                score.loses=0;
+                score.ties=0;
+                document.getElementById("wins").innerHTML=`${score.wins}`;
+                document.getElementById("loses").innerHTML=`${score.loses}`;
+                document.getElementById("ties").innerHTML=`${score.ties}`;
+                document.getElementById("result").innerHTML=`score is reseted`;
+            }
+            function randomChoice(){
+                const number=Math.random();
+                let choice="";
+                if(number>=0 && number<1/3)
+                {
+                    choice="✊";
+                }
+                else if(number>=1/3 && number<2/3)
+                {
+                    choice="✋";
+                }
+                else if(number>=2/3 && number<1)
+                {
+                    choice="✌️";
+                }
+                return(choice);
+            }
+        </script>
+    </body>
+</html>
